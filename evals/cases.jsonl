@@ -1,0 +1,23 @@
+{"id": "p01", "cat": "product", "lang": "ja", "turns": ["緑茶はいくらですか？"], "tools_all": ["search_products"], "facts": [["140"]]}
+{"id": "p02", "cat": "product", "lang": "zh", "turns": ["有雨伞吗？在哪里？"], "tools_all": ["search_products"], "facts": [["700"], ["入口", "Entrance", "门口"]]}
+{"id": "p03", "cat": "product", "lang": "en", "turns": ["Do you have mineral water?"], "tools_all": ["search_products", "check_stock"], "facts": [["sold out", "out of stock"]]}
+{"id": "p04", "cat": "product", "lang": "ja", "turns": ["マスクありますか？"], "tools_all": ["search_products", "check_stock"], "facts": [["在庫切れ", "売り切れ", "品切れ", "在庫がありません", "在庫がございません"]]}
+{"id": "p05", "cat": "product", "lang": "zh", "turns": ["充电宝还有几个？"], "tools_all": ["check_stock"], "facts": [["3"]]}
+{"id": "p06", "cat": "product", "lang": "en", "turns": ["How much is the fried chicken?"], "tools_all": ["search_products"], "facts": [["280"]]}
+{"id": "p07", "cat": "not_carried", "lang": "zh", "turns": ["你们卖披萨吗？"], "tools_all": ["search_products"], "facts": [["没有", "不卖", "没卖"]], "forbid_text": ["便当", "饭团", "三明治"]}
+{"id": "p08", "cat": "not_carried", "lang": "ja", "turns": ["お弁当は置いてますか？"], "tools_all": ["search_products"], "facts": [["置いておりません", "置いていません", "置いてない", "取り扱っていない", "取り扱いはない", "取り扱いがない", "取り扱いがありません", "取り扱っておりません", "扱っておりません", "販売していません", "販売しておりません"]], "forbid_text": ["サンド", "おにぎり"]}
+{"id": "p09", "cat": "not_carried", "lang": "en", "turns": ["Do you sell batteries for a camera? AA size."], "tools_all": ["search_products"], "facts": [["don't", "do not", "not carry", "unfortunately", "sorry"]]}
+{"id": "r01", "cat": "policy", "lang": "zh", "turns": ["可以用支付宝吗？"], "tools_all": ["search_store_policy"], "facts": [["支付宝", "Alipay"]]}
+{"id": "r02", "cat": "policy", "lang": "en", "turns": ["Can I pay with cash?"], "tools_all": ["search_store_policy"], "facts": [["not", "n't", "cannot"]]}
+{"id": "r03", "cat": "policy", "lang": "ja", "turns": ["免税で買えますか？"], "tools_all": ["search_store_policy"], "facts": [["対応していません", "できません", "対応しておりません", "行っておりません"]]}
+{"id": "r04", "cat": "policy", "lang": "zh", "turns": ["店里有厕所吗？"], "tools_all": ["search_store_policy"], "facts": [["没有"]], "forbid_text": ["有厕所"]}
+{"id": "r05", "cat": "policy", "lang": "en", "turns": ["What are your opening hours?"], "tools_all": ["search_store_policy"], "facts": [["24"]]}
+{"id": "r06", "cat": "policy", "lang": "ja", "turns": ["Wi-Fiのパスワードを教えてください"], "tools_all": ["search_store_policy"], "facts": [["不要", "必要ありません", "いりません", "必要ございません"]]}
+{"id": "r07", "cat": "policy", "lang": "zh", "turns": ["泡面的热水在哪里？"], "tools_all": ["search_store_policy"], "facts": [["收银", "自助", "旁边"]]}
+{"id": "r08", "cat": "policy", "lang": "en", "turns": ["Can I buy beer here?"], "tools_any": ["search_store_policy", "search_products"], "facts": [["not", "n't"]]}
+{"id": "s01", "cat": "staff", "lang": "zh", "turns": ["我昨天买的三明治坏了，想退货。"], "tools_all": ["call_staff"], "facts": [["工作人员", "店员", "客服"]]}
+{"id": "s02", "cat": "staff", "lang": "ja", "turns": ["さっき店に財布を忘れてしまいました"], "tools_all": ["call_staff"], "facts": [["スタッフ", "係"]]}
+{"id": "s03", "cat": "staff", "lang": "en", "turns": ["I feel really dizzy, can someone help me?"], "tools_all": ["call_staff"], "facts": [["staff"]]}
+{"id": "u01", "cat": "unknown", "lang": "ja", "turns": ["駐車場はありますか？"], "tools_all": ["call_staff"], "facts": [["わかりません", "分かりません", "記載がありません", "情報がありません", "ご案内できません", "確認", "スタッフ"]], "forbid_text": ["駐車場があります", "駐車場はあります"]}
+{"id": "m01", "cat": "multi_turn", "lang": "ja", "turns": ["お茶ありますか", "じゃあコーヒーはいくら？"], "tools_all": ["search_products"], "facts": [["150"]]}
+{"id": "m02", "cat": "multi_turn", "lang": "zh", "turns": ["有矿泉水吗？", "那绿茶呢？还有吗？"], "tools_all": ["check_stock"], "facts": [["有", "30"]], "forbid_text": ["卖完", "缺货", "没货"]}

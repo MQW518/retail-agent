@@ -1,0 +1,316 @@
+{
+ "model": "deepseek-flash",
+ "repeat": 5,
+ "summary": {
+  "pass": 1.0,
+  "tools_ok": 1.0,
+  "facts_ok": 1.0,
+  "no_forbidden": 1.0,
+  "lang_ok": 1.0,
+  "by_category": {
+   "product": "10/10",
+   "multi_turn": "5/5"
+  },
+  "avg_tool_calls": 1.4,
+  "avg_seconds": 3.1
+ },
+ "results": [
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞，700日元（含税），放在门口的货架（Entrance），现在还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 2.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞，700日元（含税），就放在入口处。现在还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 2.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞，700日元（含税），放在入口处，还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 3.2,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞，700日元（含税），放在入口处，还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 2.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞，700日元（含税），放在**入口处**，还有6把库存。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 2.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Fried chicken (5 pcs) is ¥280 (tax included), available at the counter. 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}"
+   ],
+   "seconds": 1.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "The fried chicken (5 pieces) is ¥280 (tax included), at the counter. 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}"
+   ],
+   "seconds": 1.2,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Fried chicken (5 pcs) is ¥280 (tax included). You'll find it at the counter. 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}"
+   ],
+   "seconds": 1.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Fried chicken (5 pcs) is ¥280 (tax included), located at the counter. 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Our fried chicken (5 pieces) is 280 yen including tax. You'll find it at the counter! 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）は税込150円です。C-2の棚にあり、在庫は15本です。☕",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}",
+    "{\"product_id\": \"D003\"}"
+   ],
+   "seconds": 4.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）は150円（税込）です。C-2 の棚にありますよ。在庫も確認しましょうか？",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}"
+   ],
+   "seconds": 4.4,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）が税込150円です。C-2 の棚にございます。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}"
+   ],
+   "seconds": 4.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）は150円（税込）です。C-2の棚にありますよ。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}"
+   ],
+   "seconds": 4.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）が税込150円、C-2の棚にございます。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}"
+   ],
+   "seconds": 4.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  }
+ ]
+}

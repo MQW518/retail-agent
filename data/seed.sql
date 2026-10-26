@@ -15,7 +15,7 @@ INSERT INTO products VALUES
 ('F001', 'おにぎり 鮭',        '饭团（三文鱼）',     'Rice ball (salmon)',        'food',        160, 12, 'A-1', 'onigiri 饭团 おにぎり'),
 ('F002', 'おにぎり ツナマヨ',  '饭团（金枪鱼蛋黄酱）', 'Rice ball (tuna mayo)',     'food',        150, 0,  'A-1', 'onigiri 饭团 おにぎり'),
 ('F003', 'ミックスサンド',      '混合三明治',         'Mixed sandwich',            'food',        320, 5,  'A-2', 'サンドイッチ sandwich 三明治'),
-('F004', 'からあげ 5個入り',    '日式炸鸡（5块）',     'Fried chicken (5 pcs)',     'food',        280, 8,  'Counter', '唐揚げ 炸鸡 chicken'),
+('F004', 'からあげ 5個入り',    '日式炸鸡（5块）',     'Fried chicken (5 pcs)',     'food',        280, 8,  'Counter', '唐揚げ フライドチキン チキン 炸鸡 chicken'),
 ('F005', 'カップラーメン 醤油', '杯面（酱油味）',      'Cup noodles (soy sauce)',   'food',        230, 20, 'B-3', 'ラーメン 泡面 方便面 noodles ramen'),
 ('D001', '緑茶 500ml',          '绿茶 500ml',         'Green tea 500ml',           'drink',       140, 30, 'C-1', 'お茶 茶 tea'),
 ('D002', 'ミネラルウォーター 500ml', '矿泉水 500ml',  'Mineral water 500ml',       'drink',       110, 0,  'C-1', '水 water お水'),

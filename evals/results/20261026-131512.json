@@ -1,0 +1,1412 @@
+{
+ "model": "deepseek-flash",
+ "repeat": 3,
+ "summary": {
+  "pass": 0.971,
+  "tools_ok": 1.0,
+  "facts_ok": 0.971,
+  "no_forbidden": 1.0,
+  "lang_ok": 1.0,
+  "by_category": {
+   "product": "18/18",
+   "not_carried": "7/9",
+   "policy": "24/24",
+   "staff": "9/9",
+   "unknown": "3/3",
+   "multi_turn": "6/6"
+  },
+  "avg_tool_calls": 1.57,
+  "avg_seconds": 2.5
+ },
+ "results": [
+  {
+   "id": "p01",
+   "cat": "product",
+   "lang": "ja",
+   "answer": "緑茶 500ml は140円（税込）です。C-1の棚にありますよ。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"緑茶\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p01",
+   "cat": "product",
+   "lang": "ja",
+   "answer": "緑茶 500ml は 140円（税込）です。売り場は C-1 です。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"緑茶\"}"
+   ],
+   "seconds": 1.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p01",
+   "cat": "product",
+   "lang": "ja",
+   "answer": "緑茶 500mlは140円（税込）です。C-1の棚にありますよ。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"緑茶\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的，透明雨伞（700日元，含税），放在入口处，还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 3.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞，700日元（含税），放在入口处，现在还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 2.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p02",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "有的！透明雨伞（700日元，含税）在入口处，目前还有6把。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"雨伞\"}",
+    "{\"product_id\": \"H001\"}"
+   ],
+   "seconds": 2.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p03",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Yes, we carry Mineral water 500ml (¥110, shelf C-1) — but it's currently sold out. Sorry about that!",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"mineral water\"}",
+    "{\"product_id\": \"D002\"}"
+   ],
+   "seconds": 3.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p03",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Yes, we carry mineral water (500ml, ¥110), but it's currently sold out. Sorry about that!",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"mineral water\"}",
+    "{\"product_id\": \"D002\"}"
+   ],
+   "seconds": 3.0,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p03",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Yes, we carry Mineral water 500ml (¥110), but unfortunately it's sold out right now. Sorry about that!",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"mineral water\"}",
+    "{\"product_id\": \"D002\"}"
+   ],
+   "seconds": 2.3,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p04",
+   "cat": "product",
+   "lang": "ja",
+   "answer": "マスク(7枚入り、380円)は取り扱っていますが、ただいま在庫切れです。すみません!",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"マスク\"}",
+    "{\"product_id\": \"H003\"}"
+   ],
+   "seconds": 3.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p04",
+   "cat": "product",
+   "lang": "ja",
+   "answer": "マスク（7枚入り・380円）はありますが、ただいま在庫切れです。申し訳ありません。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"マスク\"}",
+    "{\"product_id\": \"H003\"}"
+   ],
+   "seconds": 3.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p04",
+   "cat": "product",
+   "lang": "ja",
+   "answer": "はい、マスク（7枚入り・380円）は取り扱っていますが、ただいま在庫切れです。申し訳ありません。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"マスク\"}",
+    "{\"product_id\": \"H003\"}"
+   ],
+   "seconds": 2.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p05",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "充电宝还有3个，价格2980日元（含税），在E-1货架。需要的话请尽快哦～",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"充电宝\"}",
+    "{\"product_id\": \"E001\"}"
+   ],
+   "seconds": 2.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p05",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "充电宝还有 3 个，价格 2980 日元（含税），在 E-1 货架。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"充电宝\"}",
+    "{\"product_id\": \"E001\"}"
+   ],
+   "seconds": 2.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p05",
+   "cat": "product",
+   "lang": "zh",
+   "answer": "充电宝还有3个，售价2980日元（含税），在E-1货架。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"充电宝\"}",
+    "{\"product_id\": \"E001\"}"
+   ],
+   "seconds": 2.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "The fried chicken (5 pieces) is ¥280 (tax included), at the counter. 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\", \"category\": \"food\"}"
+   ],
+   "seconds": 1.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Fried chicken (5 pcs) is ¥280 (tax included), at the counter. 🍗",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}"
+   ],
+   "seconds": 1.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p06",
+   "cat": "product",
+   "lang": "en",
+   "answer": "Fried chicken (5 pcs) is ¥280 (tax included). It's at the counter, and we have 8 in stock. 🍗",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"fried chicken\"}",
+    "{\"product_id\": \"F004\"}"
+   ],
+   "seconds": 2.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p07",
+   "cat": "not_carried",
+   "lang": "zh",
+   "answer": "不好意思，我们店里没有卖披萨哦。需要我帮你找找别的吗？",
+   "tools": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"披萨\"}",
+    "{\"keyword\": \"pizza\"}",
+    "{\"keyword\": \"ピザ\"}"
+   ],
+   "seconds": 3.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p07",
+   "cat": "not_carried",
+   "lang": "zh",
+   "answer": "不好意思，我们店没有卖披萨哦。",
+   "tools": [
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"披萨\"}",
+    "{\"keyword\": \"ピザ\"}"
+   ],
+   "seconds": 1.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p07",
+   "cat": "not_carried",
+   "lang": "zh",
+   "answer": "抱歉，我们店里没有卖披萨。",
+   "tools": [
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"披萨\"}",
+    "{\"keyword\": \"ピザ\"}"
+   ],
+   "seconds": 2.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p08",
+   "cat": "not_carried",
+   "lang": "ja",
+   "answer": "すみません、お弁当は取り扱っていないようです。他に何かお探しですか？",
+   "tools": [
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"お弁当\", \"category\": \"food\"}",
+    "{\"keyword\": \"弁当\", \"category\": \"food\"}"
+   ],
+   "seconds": 2.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": false,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": false
+  },
+  {
+   "id": "p08",
+   "cat": "not_carried",
+   "lang": "ja",
+   "answer": "申し訳ありません、お弁当の取り扱いはないようです。他にお探しのものはありますか？",
+   "tools": [
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"お弁当\", \"category\": \"food\"}",
+    "{\"keyword\": \"弁当\"}"
+   ],
+   "seconds": 2.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p08",
+   "cat": "not_carried",
+   "lang": "ja",
+   "answer": "すみません、お弁当は取り扱っていないようです。",
+   "tools": [
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"お弁当\"}",
+    "{\"keyword\": \"弁当\", \"category\": \"food\"}"
+   ],
+   "seconds": 2.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": false,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": false
+  },
+  {
+   "id": "p09",
+   "cat": "not_carried",
+   "lang": "en",
+   "answer": "Sorry, we don't carry AA batteries. The only battery-related item we have is a portable battery charger (¥2,980, shelf E-1) — that's a power bank, not AA cells.",
+   "tools": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"電池\", \"category\": \"electronics\"}",
+    "{\"keyword\": \"battery\"}",
+    "{\"keyword\": \"乾電池\"}"
+   ],
+   "seconds": 2.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p09",
+   "cat": "not_carried",
+   "lang": "en",
+   "answer": "Sorry, we don't carry AA batteries (only a portable battery charger, ¥2,980, shelf E-1). Sorry I couldn't help more!",
+   "tools": [
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"電池\", \"category\": \"electronics\"}",
+    "{\"keyword\": \"battery\", \"category\": \"electronics\"}",
+    "{\"keyword\": \"電池\"}",
+    "{\"keyword\": \"乾電池\"}",
+    "{\"keyword\": \"single-use battery AA\"}"
+   ],
+   "seconds": 3.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "p09",
+   "cat": "not_carried",
+   "lang": "en",
+   "answer": "Sorry, we don't carry AA batteries. The only battery-related item we have is a portable battery charger (¥2,980, shelf E-1).",
+   "tools": [
+    "search_products",
+    "search_products",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"battery\", \"category\": \"electronics\"}",
+    "{\"keyword\": \"乾電池\"}",
+    "{\"keyword\": \"単3\"}"
+   ],
+   "seconds": 3.2,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r01",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "可以，我们支持支付宝（Alipay）付款，另外还支持微信支付和PayPay等二维码支付。请注意：本店不收现金哦。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"支払い Alipay\"}"
+   ],
+   "seconds": 2.3,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r01",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "可以，我们支持支付宝。自助收银可以使用信用卡、交通IC卡和二维码支付（PayPay、支付宝、微信支付），但不收现金。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"支払い Alipay 支付宝\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r01",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "可以！支付宝能用 😊 另外也支持微信支付、PayPay、信用卡和交通IC卡。不过请注意本店不能用现金哦。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"支払い Alipay 支付宝\"}"
+   ],
+   "seconds": 2.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r02",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "Sorry — cash isn't accepted here. Payment is at the self-checkout, and you can use credit cards (Visa, Mastercard, JCB, American Express), transit IC cards (Suica, PASMO, etc.), or QR payments (PayPay, Alipay, WeChat Pay).",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"支払い 現金\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r02",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "Sorry, cash isn't accepted. Payment is at the self-checkout, and you can use credit cards (Visa, Mastercard, JCB, Amex), transport IC cards (Suica, PASMO, etc.), or QR codes (PayPay, Alipay, WeChat Pay).",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"支払い方法 現金\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r02",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "Sorry, cash isn't accepted here. Payment is at the self-checkout, and you can use credit cards (Visa, Mastercard, JCB, Amex), transport IC cards (Suica, PASMO, etc.), or QR payments (PayPay, Alipay, WeChat Pay).",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"支払い 現金\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r03",
+   "cat": "policy",
+   "lang": "ja",
+   "answer": "申し訳ありません、当店は免税販売に対応していません。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"免税 tax-free\"}"
+   ],
+   "seconds": 2.0,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r03",
+   "cat": "policy",
+   "lang": "ja",
+   "answer": "申し訳ありません、当店は免税販売に対応していません。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"免税 タックスフリー\"}"
+   ],
+   "seconds": 1.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r03",
+   "cat": "policy",
+   "lang": "ja",
+   "answer": "申し訳ありません、当店は免税販売に対応していません。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"免税 tax-free\"}"
+   ],
+   "seconds": 1.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r04",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "很抱歉，本店没有顾客用的厕所，请使用附近车站的厕所。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"トイレ\"}"
+   ],
+   "seconds": 1.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r04",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "不好意思，本店没有供顾客使用的厕所，请使用附近车站的厕所。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"トイレ\"}"
+   ],
+   "seconds": 2.0,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r04",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "抱歉，本店没有供顾客使用的厕所，请使用附近车站的厕所。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"トイレ\"}"
+   ],
+   "seconds": 1.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r05",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "We're open 24 hours, every day. Just note that entry is closed from 3:00 to 3:30 AM daily for restocking.",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"営業時間\"}"
+   ],
+   "seconds": 2.0,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r05",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "We're open 24 hours, every day of the year. Just note that between 3:00 and 3:30 AM daily, entry is closed for restocking. 🙂",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"営業時間\"}"
+   ],
+   "seconds": 2.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r05",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "We're open 24 hours, every day of the year. Just note that entry is closed from 3:00 to 3:30 AM daily for restocking. 🙂",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"営業時間\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r06",
+   "cat": "policy",
+   "lang": "ja",
+   "answer": "無料Wi-Fi「DEMO-STORE-FREE」が使えます。パスワードは不要ですよ。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"Wi-Fi パスワード\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r06",
+   "cat": "policy",
+   "lang": "ja",
+   "answer": "無料Wi-Fi「DEMO-STORE-FREE」が使えます。パスワードは不要ですよ。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"Wi-Fi パスワード\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r06",
+   "cat": "policy",
+   "lang": "ja",
+   "answer": "無料Wi-Fi「DEMO-STORE-FREE」がご利用いただけます。パスワードは不要です。どうぞご利用ください。",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"Wi-Fi パスワード\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r07",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "热水在自助收银机旁边，那里有微波炉和热水机，泡面用的热水就是那边的，可以自由使用～",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"お湯 給湯 電子レンジ カップ麺\"}"
+   ],
+   "seconds": 2.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r07",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "自助收银台旁边有微波炉和热水机，泡面用的热水就在那里，可以随便用哦～",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"熱湯 お湯 電子レンジ カップ麺\"}"
+   ],
+   "seconds": 1.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r07",
+   "cat": "policy",
+   "lang": "zh",
+   "answer": "热水在自助收银机旁边的热水机上，免费使用，泡面也请用这里的热水哦～",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"お湯 電子レンジ 給湯\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r08",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "Sorry, we don't sell beer (or any alcohol) here.",
+   "tools": [
+    "search_store_policy",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"query\": \"アルコール 酒 販売\"}",
+    "{\"keyword\": \"ビール\"}"
+   ],
+   "seconds": 1.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r08",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "Sorry, we don't sell alcohol (or tobacco) at this store. 🙏",
+   "tools": [
+    "search_store_policy",
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"query\": \"アルコール 酒 販売\"}",
+    "{\"keyword\": \"ビール\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "r08",
+   "cat": "policy",
+   "lang": "en",
+   "answer": "Sorry, we don't sell alcohol or tobacco at this store. 🙏",
+   "tools": [
+    "search_store_policy"
+   ],
+   "tool_args": [
+    "{\"query\": \"アルコール 酒 販売\"}"
+   ],
+   "seconds": 1.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s01",
+   "cat": "staff",
+   "lang": "zh",
+   "answer": "很抱歉遇到这种情况！退货退款需要由工作人员处理，我已经通知他们了，请稍等一下。",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"昨日購入したサンドイッチの不良（品質問題）による返品・返金希望\", \"language\": \"zh\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s01",
+   "cat": "staff",
+   "lang": "zh",
+   "answer": "很抱歉听到这个情况！我已经通知工作人员来处理您的退货，请稍等一下。",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"昨日購入したサンドイッチが傷んでいたとのことで、返品・返金を希望している。\", \"language\": \"zh\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s01",
+   "cat": "staff",
+   "lang": "zh",
+   "answer": "很抱歉遇到这样的情况，我已经通知工作人员了，他们会尽快为您处理退货。请稍等一下。",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様が昨日購入したサンドイッチが傷んでいたため返品を希望している\", \"language\": \"zh\"}"
+   ],
+   "seconds": 2.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s02",
+   "cat": "staff",
+   "lang": "ja",
+   "answer": "スタッフに連絡しました。落とし物の確認をしますので、少々お待ちください。",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様が店内に財布を忘れた可能性あり。落とし物の確認をお願いしたい。\", \"language\": \"ja\"}"
+   ],
+   "seconds": 2.0,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s02",
+   "cat": "staff",
+   "lang": "ja",
+   "answer": "スタッフに連絡しました。少々お待ちください。忘れ物の確認をお願いしています。",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様が店内に財布を忘れた可能性がある。落とし物の確認と対応を依頼したい。\", \"language\": \"ja\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s02",
+   "cat": "staff",
+   "lang": "ja",
+   "answer": "スタッフを呼びました。担当者から確認のご連絡をいたしますので、少々お待ちください。",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様が店内に財布を忘れた可能性あり。落とし物の確認対応を依頼。\", \"language\": \"ja\"}"
+   ],
+   "seconds": 1.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s03",
+   "cat": "staff",
+   "lang": "en",
+   "answer": "I've notified our staff right away — someone will be with you shortly. Please sit down and stay calm. If you feel worse or it's an emergency, please call 119.",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様がめまいを訴えており、体調不良のため助けを求めている。至急対応が必要。\", \"language\": \"en\"}"
+   ],
+   "seconds": 2.2,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s03",
+   "cat": "staff",
+   "lang": "en",
+   "answer": "I've notified a staff member — they're on the way. Please sit down and stay with me. If your symptoms get worse, call 119 right away.",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様がめまいで気分が悪いと助けを求めている（緊急対応）\", \"language\": \"en\"}"
+   ],
+   "seconds": 1.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "s03",
+   "cat": "staff",
+   "lang": "en",
+   "answer": "I've notified staff right away (ticket S001). Please sit down somewhere safe and don't try to stand up too quickly — help is on the way.",
+   "tools": [
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"reason\": \"お客様がめまいで気分が悪いと訴えている。至急対応が必要。\", \"language\": \"en\"}"
+   ],
+   "seconds": 1.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "u01",
+   "cat": "unknown",
+   "lang": "ja",
+   "answer": "駐車場については店内ガイドに情報がなく、わかりかねます。スタッフに確認を通知しましたので、少々お待ちください。",
+   "tools": [
+    "search_store_policy",
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"query\": \"駐車場\"}",
+    "{\"reason\": \"駐車場があるかどうかについての問い合わせ\", \"language\": \"ja\"}"
+   ],
+   "seconds": 2.9,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "u01",
+   "cat": "unknown",
+   "lang": "ja",
+   "answer": "申し訳ありません、店内ガイドには駐車場の記載がなく、私では分かりかねます。スタッフに確認を依頼しましたので、少々お待ちください。",
+   "tools": [
+    "search_store_policy",
+    "search_store_policy",
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"query\": \"駐車場 パーキング\"}",
+    "{\"query\": \"駐車場 駐輪場 車\"}",
+    "{\"reason\": \"駐車場があるかどうか、店内ガイドに記載がなく確認できないため。\", \"language\": \"ja\"}"
+   ],
+   "seconds": 3.8,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "u01",
+   "cat": "unknown",
+   "lang": "ja",
+   "answer": "スタッフに連絡しました。少々お待ちください。",
+   "tools": [
+    "search_store_policy",
+    "search_store_policy",
+    "call_staff"
+   ],
+   "tool_args": [
+    "{\"query\": \"駐車場 パーキング\"}",
+    "{\"query\": \"店舗 設備 アクセス\"}",
+    "{\"reason\": \"駐車場があるかどうかのお問い合わせ\", \"language\": \"ja\"}"
+   ],
+   "seconds": 4.2,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）は税込150円、C-2の棚に15本あります。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}",
+    "{\"product_id\": \"D003\"}"
+   ],
+   "seconds": 5.1,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）は税込150円です。C-2 の棚にあります。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}"
+   ],
+   "seconds": 4.4,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m01",
+   "cat": "multi_turn",
+   "lang": "ja",
+   "answer": "ブラックコーヒー（缶）は税込150円です。棚はC-2です。",
+   "tools": [
+    "search_products"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"コーヒー\"}"
+   ],
+   "seconds": 4.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m02",
+   "cat": "multi_turn",
+   "lang": "zh",
+   "answer": "有的！绿茶 500ml，140日元（含税），C-1货架，库存充足（还有30瓶）。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"绿茶\"}",
+    "{\"product_id\": \"D001\"}"
+   ],
+   "seconds": 5.5,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m02",
+   "cat": "multi_turn",
+   "lang": "zh",
+   "answer": "有的！绿茶 500ml，140日元（含税），货架 C-1，库存还有 30 瓶。",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"绿茶\"}",
+    "{\"product_id\": \"D001\"}"
+   ],
+   "seconds": 5.6,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  },
+  {
+   "id": "m02",
+   "cat": "multi_turn",
+   "lang": "zh",
+   "answer": "有的！绿茶 500ml，140日元，货架 C-1，库存充足～",
+   "tools": [
+    "search_products",
+    "check_stock"
+   ],
+   "tool_args": [
+    "{\"keyword\": \"緑茶\"}",
+    "{\"product_id\": \"D001\"}"
+   ],
+   "seconds": 5.7,
+   "error": null,
+   "tools_ok": true,
+   "facts_ok": true,
+   "no_forbidden": true,
+   "lang_ok": true,
+   "pass": true
+  }
+ ]
+}

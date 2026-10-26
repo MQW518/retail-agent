@@ -2,13 +2,12 @@ import json
 
 import pytest
 
-from agent.db import connect
-from agent.tools import check_stock, execute_tool, search_products
+from agent.tools import check_stock, execute_tool, open_store, search_products
 
 
 @pytest.fixture
-def conn():
-    return connect()
+def store():
+    return open_store()
 
 
 @pytest.mark.parametrize("keyword,expected_id", [
@@ -19,27 +18,50 @@ def conn():
     ("お茶", "D001"),      # 别名：日常叫法（第一次真实对话里搜不到的词）
     ("充電器", "E001"),
 ])
-def test_search_multilingual(conn, keyword, expected_id):
-    assert expected_id in [p["id"] for p in search_products(conn, keyword)]
+def test_search_multilingual(store, keyword, expected_id):
+    assert expected_id in [p["id"] for p in search_products(store, keyword)]
 
 
-def test_search_category_filter(conn):
-    ids = [p["id"] for p in search_products(conn, "おにぎり", category="drink")]
-    assert ids == []
+def test_search_category_filter(store):
+    assert search_products(store, "おにぎり", category="drink") == []
 
 
-def test_check_stock(conn):
-    assert check_stock(conn, "d002")["stock"] == 0
-    assert "error" in check_stock(conn, "X999")
+def test_check_stock(store):
+    assert check_stock(store, "d002")["stock"] == 0
+    assert "error" in check_stock(store, "X999")
 
 
-def test_execute_tool_rejects_bad_input(conn):
-    assert "error" in json.loads(execute_tool(conn, "no_such_tool", "{}"))
-    assert "error" in json.loads(execute_tool(conn, "check_stock", "not json"))
-    assert "error" in json.loads(execute_tool(conn, "check_stock", "{}"))
-    assert "error" in json.loads(execute_tool(conn, "search_products", '{"keyword": "茶", "category": "toys"}'))
+@pytest.mark.parametrize("query,expected_title", [
+    ("支払い Alipay", "お支払い方法"),
+    ("現金", "お支払い方法"),
+    ("返品", "返品・交換"),
+    ("お湯 カップラーメン", "電子レンジ・お湯"),
+    ("トイレ", "トイレ"),
+])
+def test_policy_search_top1(store, query, expected_title):
+    out = json.loads(execute_tool(store, "search_store_policy", json.dumps({"query": query}, ensure_ascii=False)))
+    assert out["results"][0]["title"] == expected_title
 
 
-def test_execute_tool_drops_extra_arguments(conn):
-    out = json.loads(execute_tool(conn, "check_stock", '{"product_id": "D001", "extra": 1}'))
+def test_policy_search_no_hit(store):
+    out = json.loads(execute_tool(store, "search_store_policy", '{"query": "駐車場"}'))
+    assert out["results"] == []
+
+
+def test_call_staff_records_ticket(store):
+    out = json.loads(execute_tool(store, "call_staff", '{"reason": "返品希望", "language": "zh"}'))
+    assert out["ticket"] == "S001"
+    assert store.staff_requests[0]["language"] == "zh"
+
+
+def test_execute_tool_rejects_bad_input(store):
+    assert "error" in json.loads(execute_tool(store, "no_such_tool", "{}"))
+    assert "error" in json.loads(execute_tool(store, "check_stock", "not json"))
+    assert "error" in json.loads(execute_tool(store, "check_stock", "{}"))
+    assert "error" in json.loads(execute_tool(store, "search_products", '{"keyword": "茶", "category": "toys"}'))
+    assert "error" in json.loads(execute_tool(store, "call_staff", '{"reason": "x", "language": "fr"}'))
+
+
+def test_execute_tool_drops_extra_arguments(store):
+    out = json.loads(execute_tool(store, "check_stock", '{"product_id": "D001", "extra": 1}'))
     assert out["stock"] == 30

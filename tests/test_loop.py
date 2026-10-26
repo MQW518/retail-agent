@@ -3,7 +3,7 @@ import copy
 import json
 from types import SimpleNamespace as NS
 
-from agent.db import connect
+from agent.tools import open_store
 from agent.loop import MAX_STEPS, new_conversation, run_turn
 
 
@@ -37,7 +37,7 @@ def test_tool_then_answer():
     ])
     messages = new_conversation() + [{"role": "user", "content": "水はありますか"}]
     trace = []
-    answer = run_turn(client, "fake", connect(), messages, trace)
+    answer = run_turn(client, "fake", open_store(), messages, trace)
 
     assert answer == "ミネラルウォーターは在庫切れです。"
     assert trace[0][0] == "check_stock"
@@ -55,13 +55,13 @@ def test_bad_arguments_are_reported_to_model_not_raised():
     ])
     messages = new_conversation() + [{"role": "user", "content": "在庫は？"}]
     trace = []
-    run_turn(client, "fake", connect(), messages, trace)
+    run_turn(client, "fake", open_store(), messages, trace)
     assert "error" in json.loads(trace[0][2])
 
 
 def test_max_steps_guard():
     client = FakeClient([tool_call_response(f"c{i}", "check_stock", {"product_id": "D001"}) for i in range(MAX_STEPS)])
     messages = new_conversation() + [{"role": "user", "content": "loop"}]
-    answer = run_turn(client, "fake", connect(), messages)
+    answer = run_turn(client, "fake", open_store(), messages)
     assert "staff" in answer
     assert len(client.requests) == MAX_STEPS

@@ -6,9 +6,7 @@
   3. 如果是 tool_calls：逐个执行工具，把结果以 role="tool" 消息追加到历史，回到第 1 步；
   4. 直到模型给出文字回答，或者超过 max_steps（防止模型无限调工具）。
 """
-import sqlite3
-
-from .tools import TOOL_SCHEMAS, execute_tool
+from .tools import TOOL_SCHEMAS, Store, execute_tool
 
 SYSTEM_PROMPT = """You are the clerk assistant of an unstaffed convenience store in Tokyo.
 Rules:
@@ -18,12 +16,17 @@ Rules:
 - Prices are in JPY and include tax.
 - If the tools return no result, say the store does not carry it.
 - Only mention products that a tool has returned in this conversation. Never suggest other items from general knowledge.
+- For questions about store rules or services (hours, entry, payment, receipts, returns, tax-free, toilet, Wi-Fi, etc.),
+  call search_store_policy and answer only from the returned text.
+- If neither the products nor the store guide answer the question, say you don't know and call call_staff.
+- Call call_staff for returns/refunds, lost items, emergencies or trouble, or when the customer asks for a person,
+  then tell the customer that staff has been notified.
 - Keep answers short and friendly."""
 
 MAX_STEPS = 5
 
 
-def run_turn(client, model: str, conn: sqlite3.Connection, messages: list[dict], trace: list | None = None) -> str:
+def run_turn(client, model: str, store: Store, messages: list[dict], trace: list | None = None) -> str:
     """处理一轮用户输入。messages 会被原地追加（assistant / tool 消息），以保留多轮上下文。
 
     trace 不为 None 时，记录每次工具调用 (name, arguments, result)，供评测和调试使用。
@@ -56,7 +59,7 @@ def run_turn(client, model: str, conn: sqlite3.Connection, messages: list[dict],
             ],
         })
         for tc in msg.tool_calls:
-            result = execute_tool(conn, tc.function.name, tc.function.arguments)
+            result = execute_tool(store, tc.function.name, tc.function.arguments)
             if trace is not None:
                 trace.append((tc.function.name, tc.function.arguments, result))
             messages.append({"role": "tool", "tool_call_id": tc.id, "content": result})

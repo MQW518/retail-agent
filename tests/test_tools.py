@@ -16,6 +16,8 @@ def conn():
     ("雨伞", "H001"),      # 中文
     ("umbrella", "H001"),  # 英语
     ("UMBRELLA", "H001"),  # 英语大小写不敏感
+    ("お茶", "D001"),      # 别名：日常叫法（第一次真实对话里搜不到的词）
+    ("充電器", "E001"),
 ])
 def test_search_multilingual(conn, keyword, expected_id):
     assert expected_id in [p["id"] for p in search_products(conn, keyword)]

@@ -7,21 +7,22 @@ CREATE TABLE products (
     category  TEXT NOT NULL,      -- food / drink / daily / electronics
     price_jpy INTEGER NOT NULL,   -- 含税价格（日元）
     stock     INTEGER NOT NULL,   -- 当前库存
-    shelf     TEXT NOT NULL       -- 货架位置
+    shelf     TEXT NOT NULL,      -- 货架位置
+    aliases   TEXT NOT NULL DEFAULT ''  -- 常见叫法（三语，空格分隔），用于检索
 );
 
 INSERT INTO products VALUES
-('F001', 'おにぎり 鮭',        '饭团（三文鱼）',     'Rice ball (salmon)',        'food',        160, 12, 'A-1'),
-('F002', 'おにぎり ツナマヨ',  '饭团（金枪鱼蛋黄酱）', 'Rice ball (tuna mayo)',     'food',        150, 0,  'A-1'),
-('F003', 'ミックスサンド',      '混合三明治',         'Mixed sandwich',            'food',        320, 5,  'A-2'),
-('F004', 'からあげ 5個入り',    '日式炸鸡（5块）',     'Fried chicken (5 pcs)',     'food',        280, 8,  'Counter'),
-('F005', 'カップラーメン 醤油', '杯面（酱油味）',      'Cup noodles (soy sauce)',   'food',        230, 20, 'B-3'),
-('D001', '緑茶 500ml',          '绿茶 500ml',         'Green tea 500ml',           'drink',       140, 30, 'C-1'),
-('D002', 'ミネラルウォーター 500ml', '矿泉水 500ml',  'Mineral water 500ml',       'drink',       110, 0,  'C-1'),
-('D003', 'ブラックコーヒー 缶', '黑咖啡（罐装）',      'Black coffee (can)',        'drink',       150, 15, 'C-2'),
-('D004', 'オレンジジュース 1L', '橙汁 1L',            'Orange juice 1L',           'drink',       250, 4,  'C-2'),
-('H001', 'ビニール傘',          '透明雨伞',           'Clear umbrella',            'daily',       700, 6,  'Entrance'),
-('H002', '歯ブラシ',            '牙刷',               'Toothbrush',                'daily',       200, 10, 'D-1'),
-('H003', 'マスク 7枚入り',      '口罩（7片装）',       'Face masks (7 pcs)',        'daily',       380, 0,  'D-1'),
-('E001', 'モバイルバッテリー',  '充电宝',             'Portable battery charger',  'electronics', 2980, 3, 'E-1'),
-('E002', 'USB-C ケーブル 1m',   'USB-C 数据线 1米',    'USB-C cable 1m',            'electronics', 1280, 7, 'E-1');
+('F001', 'おにぎり 鮭',        '饭团（三文鱼）',     'Rice ball (salmon)',        'food',        160, 12, 'A-1', 'onigiri 饭团 おにぎり'),
+('F002', 'おにぎり ツナマヨ',  '饭团（金枪鱼蛋黄酱）', 'Rice ball (tuna mayo)',     'food',        150, 0,  'A-1', 'onigiri 饭团 おにぎり'),
+('F003', 'ミックスサンド',      '混合三明治',         'Mixed sandwich',            'food',        320, 5,  'A-2', 'サンドイッチ sandwich 三明治'),
+('F004', 'からあげ 5個入り',    '日式炸鸡（5块）',     'Fried chicken (5 pcs)',     'food',        280, 8,  'Counter', '唐揚げ 炸鸡 chicken'),
+('F005', 'カップラーメン 醤油', '杯面（酱油味）',      'Cup noodles (soy sauce)',   'food',        230, 20, 'B-3', 'ラーメン 泡面 方便面 noodles ramen'),
+('D001', '緑茶 500ml',          '绿茶 500ml',         'Green tea 500ml',           'drink',       140, 30, 'C-1', 'お茶 茶 tea'),
+('D002', 'ミネラルウォーター 500ml', '矿泉水 500ml',  'Mineral water 500ml',       'drink',       110, 0,  'C-1', '水 water お水'),
+('D003', 'ブラックコーヒー 缶', '黑咖啡（罐装）',      'Black coffee (can)',        'drink',       150, 15, 'C-2', 'コーヒー 咖啡 coffee'),
+('D004', 'オレンジジュース 1L', '橙汁 1L',            'Orange juice 1L',           'drink',       250, 4,  'C-2', 'ジュース 果汁 juice'),
+('H001', 'ビニール傘',          '透明雨伞',           'Clear umbrella',            'daily',       700, 6,  'Entrance', '傘 かさ 伞 umbrella'),
+('H002', '歯ブラシ',            '牙刷',               'Toothbrush',                'daily',       200, 10, 'D-1', '歯磨き toothbrush'),
+('H003', 'マスク 7枚入り',      '口罩（7片装）',       'Face masks (7 pcs)',        'daily',       380, 0,  'D-1', 'マスク 口罩 mask'),
+('E001', 'モバイルバッテリー',  '充电宝',             'Portable battery charger',  'electronics', 2980, 3, 'E-1', 'バッテリー 充電器 充电器 battery charger powerbank'),
+('E002', 'USB-C ケーブル 1m',   'USB-C 数据线 1米',    'USB-C cable 1m',            'electronics', 1280, 7, 'E-1', 'ケーブル 充電ケーブル 数据线 充电线 cable');

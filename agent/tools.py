@@ -60,9 +60,10 @@ def search_products(conn: sqlite3.Connection, keyword: str, category: str | None
     like = f"%{keyword.strip()}%"
     sql = (
         "SELECT id, name_ja, name_zh, name_en, category, price_jpy, shelf FROM products "
-        "WHERE (name_ja LIKE ? OR name_zh LIKE ? OR name_en LIKE ?)"  # SQLite 的 LIKE 对英文默认不区分大小写
+        # 名称之外也查 aliases（「お茶」「水」这类日常叫法）；SQLite 的 LIKE 对英文默认不区分大小写
+        "WHERE (name_ja LIKE ? OR name_zh LIKE ? OR name_en LIKE ? OR aliases LIKE ?)"
     )
-    args: list = [like, like, like]
+    args: list = [like, like, like, like]
     if category:
         sql += " AND category = ?"
         args.append(category)

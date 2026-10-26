@@ -21,8 +21,8 @@ Agent 主循环自行实现，不依赖 LangChain 等框架；LLM 使用 DeepSee
 - 步数上限：防止模型无限循环调用工具
 - token 用量与费用统计（按 DeepSeek 官方高峰价计算上限）
 - 思考模式开关（默认关闭，理由见「评测」）
-- 网页界面（Streamlit）：可展开查看每轮的工具调用、费用；侧边栏显示会话费用和转人工记录
-- 离线测试 35 个：用假的模型客户端测试主循环，不消耗 API 费用
+- 网页界面（React + TypeScript，后端 FastAPI）：可展开查看每轮的工具调用和费用；侧边栏有思考模式开关、会话费用和转人工记录
+- 离线测试 40 个：用假的模型客户端测试主循环和 HTTP 接口，不消耗 API 费用
 
 ## 评测
 `evals/cases.jsonl` 共 33 题（日 / 中 / 英），分为：商品、店里没有的商品、店铺规定、转人工、规定里查不到、多轮对话，
@@ -75,7 +75,8 @@ Agent 主循环自行实现，不依赖 LangChain 等框架；LLM 使用 DeepSee
 python -m venv .venv
 .venv/Scripts/python -m pip install -r requirements.txt   # Windows
 cp .env.example .env    # 填入 DEEPSEEK_API_KEY
-.venv/Scripts/streamlit run app.py                         # 网页界面
+cd web && npm install && npm run build && cd ..           # 构建前端（一次即可）
+.venv/Scripts/uvicorn server:app --port 8000              # 启动后，打开 http://127.0.0.1:8000
 .venv/Scripts/python chat.py --trace                       # 命令行对话，显示工具调用
 .venv/Scripts/python -m pytest -q                          # 离线测试
 .venv/Scripts/python -m evals.run_eval --repeat 3          # 评测（会调用 API）
@@ -93,7 +94,8 @@ agent/llm.py            DeepSeek 客户端
 data/seed.sql           商品数据（虚构，14 种）
 data/store_policy_ja.md 店铺规定（虚构，日语）
 evals/                  评测集、判定规则、评测脚本、历次结果
-app.py                  网页界面（Streamlit）
+server.py               HTTP 接口（FastAPI）：新建会话、发送消息，并提供构建好的前端
+web/                    前端（React + TypeScript + Vite）
 chat.py                 命令行对话
 tests/                  离线测试
 ```
@@ -104,6 +106,8 @@ tests/                  离线测试
   评测显示开启后准确率没有提升、费用 +40%，所以默认关闭。
 - **回答语言由代码决定**：工具返回的多是日语资料，评测中出现过「中文提问、日语回答」。
   现在由 `detect_customer_lang` 判断顾客语言，每次请求末尾附一条「只用 X 语回答」的提示（不写进对话历史）。
+- **前后端分离**：Agent 逻辑只在 Python 里，`server.py` 把它包成两个接口（新建会话、发送消息），前端只负责展示。
+  接口可以用假的模型客户端测试；开发时 `npm run dev` 通过代理访问后端，部署时由 FastAPI 直接提供构建好的前端。
 - **RAG 不用向量检索**：DeepSeek 不提供 embedding API，本地向量模型又要装几 GB 的依赖，而规定文档只有 15 节。
   所以用字符 bigram + BM25（日语没有空格，按字切最稳），跨语言的问题让模型先把查询改写成日语关键词。
   评测中店铺规定类 24/24 通过，目前够用；文档变大或评测出问题时再换向量检索。
@@ -122,7 +126,7 @@ tests/                  离线测试
 | 「中文提问、日语回答」（两种模式都出现） | 工具返回的日语资料把模型带偏 | 由代码判断顾客语言，每次请求附语言提示 | 之后的评测中 0 次 |
 | 要求删除监控录像时，没查规定就说「录像会按警方需要保存」（规定里没有） | 模型用常识补全了店铺规定 | 规则：「不能说规定里没有的内容」「不能删除或修改任何记录」 | 不再编造 |
 | 上一条修改后，砍价时直接拒绝、不再报价格 | 新规则让模型跳过了查询 | 规则：「拒绝打折时也要查价格并告知」 | a09 3/3 |
-| **网页界面里所有商品检索都报错**，Agent 告诉顾客「系统故障」并转人工 | SQLite 连接默认只能在创建它的线程里用，Streamlit 会在别的线程里运行；命令行和评测里没有暴露 | `check_same_thread=False`（对话中只读）；加跨线程回归测试 | 正常 |
+| **网页界面里所有商品检索都报错**，Agent 告诉顾客「系统故障」并转人工 | SQLite 连接默认只能在创建它的线程里用，网页服务会在别的线程里运行；命令行和评测里没有暴露 | `check_same_thread=False`（对话中只读）；加跨线程回归测试 | 正常 |
 
 ## 开发方式
 使用 Claude Code 协作开发：需求、设计取舍、评测标准和每次修改是否采纳由作者决定，实现与测试借助 AI 编程代理完成。

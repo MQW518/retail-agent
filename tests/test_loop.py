@@ -43,8 +43,11 @@ def test_tool_then_answer():
     assert trace[0][0] == "check_stock"
     # 第二次请求里必须带着 assistant 的 tool_calls 和对应的 tool 结果
     second = client.requests[1]["messages"]
-    assert second[-2]["tool_calls"][0]["id"] == "c1"
-    assert second[-1] == {"role": "tool", "tool_call_id": "c1", "content": trace[0][2]}
+    assert second[-3]["tool_calls"][0]["id"] == "c1"
+    assert second[-2] == {"role": "tool", "tool_call_id": "c1", "content": trace[0][2]}
+    # 每次请求末尾都附上语言提示，但它不写进对话历史
+    assert second[-1]["role"] == "system" and "Japanese" in second[-1]["content"]
+    assert all("Reply only in" not in m.get("content", "") for m in messages)
     assert json.loads(trace[0][2])["stock"] == 0
 
 
@@ -65,3 +68,36 @@ def test_max_steps_guard():
     answer = run_turn(client, "fake", open_store(), messages)
     assert "staff" in answer
     assert len(client.requests) == MAX_STEPS
+
+
+def test_thinking_mode_passes_reasoning_back():
+    """思考模式下，assistant 消息必须带着 reasoning_content 回传（否则真实 API 报 400）。"""
+    tc = NS(id="c1", function=NS(name="check_stock", arguments='{"product_id": "D001"}'))
+    first = NS(choices=[NS(message=NS(content=None, tool_calls=[tc], reasoning_content="需要查库存"))])
+    second = NS(choices=[NS(message=NS(content="あります", tool_calls=None, reasoning_content="库存30"))])
+    client = FakeClient([first, second])
+    messages = new_conversation() + [{"role": "user", "content": "お茶ある？"}]
+    run_turn(client, "fake", open_store(), messages, thinking=True)
+
+    assert client.requests[0]["extra_body"] == {"thinking": {"type": "enabled"}}
+    assert client.requests[1]["messages"][-3]["reasoning_content"] == "需要查库存"
+    assert messages[-1]["reasoning_content"] == "库存30"
+
+
+def test_thinking_off_does_not_send_reasoning():
+    client = FakeClient([text_response("hi")])
+    messages = new_conversation() + [{"role": "user", "content": "hello"}]
+    run_turn(client, "fake", open_store(), messages)
+    assert client.requests[0]["extra_body"] == {"thinking": {"type": "disabled"}}
+    assert "reasoning_content" not in messages[-1]
+
+
+def test_usage_accumulates_and_prices():
+    from agent.usage import Usage
+    u = Usage()
+    u.add(NS(prompt_tokens=1_000_000, prompt_cache_hit_tokens=400_000, completion_tokens=100_000,
+             completion_tokens_details=NS(reasoning_tokens=50_000)))
+    u.add(None)  # 没有 usage 的响应不计数
+    assert u.calls == 1 and u.reasoning_tokens == 50_000
+    # 0.4M×0.006 + 0.6M×0.3 + 0.1M×1.2 = 0.0024 + 0.18 + 0.12
+    assert abs(u.cost_usd - 0.3024) < 1e-9

@@ -3,6 +3,7 @@
 python -m evals.run_eval              每题跑 1 次
 python -m evals.run_eval --repeat 3   每题跑 3 次（模型输出有随机性，多跑几次更可靠）
 python -m evals.run_eval --only p03   只跑某几题（逗号分隔）
+python -m evals.run_eval --thinking    开启思考模式
 
 结果保存在 evals/results/<时间>.json，终端打印每题结果和汇总。
 """
@@ -18,6 +19,7 @@ from pathlib import Path
 from agent.llm import make_client
 from agent.loop import new_conversation, run_turn
 from agent.tools import open_store
+from agent.usage import Usage
 from evals.checks import check_case
 
 HERE = Path(__file__).resolve().parent
@@ -28,8 +30,9 @@ def load_cases() -> list[dict]:
     return [json.loads(line) for line in lines if line.strip()]
 
 
-def run_case(client, model: str, case: dict) -> dict:
+def run_case(client, model: str, case: dict, thinking: bool) -> dict:
     store, messages = open_store(), new_conversation()
+    usage = Usage()
     start = time.time()
     trace: list = []
     answer = ""
@@ -37,7 +40,7 @@ def run_case(client, model: str, case: dict) -> dict:
         for user in case["turns"]:
             messages.append({"role": "user", "content": user})
             trace = []  # 只保留最后一轮的工具调用
-            answer = run_turn(client, model, store, messages, trace)
+            answer = run_turn(client, model, store, messages, trace, usage, thinking)
         error = None
     except Exception as e:  # API 出错也记下来，不中断整个评测
         error = f"{type(e).__name__}: {e}"
@@ -45,7 +48,7 @@ def run_case(client, model: str, case: dict) -> dict:
     result = check_case(case, tools, answer) if error is None else {"pass": False}
     return {"id": case["id"], "cat": case["cat"], "lang": case["lang"], "answer": answer, "tools": tools,
             "tool_args": [args for _, args, _ in trace], "seconds": round(time.time() - start, 1),
-            "error": error, **result}
+            "error": error, "usage": usage.as_dict(), **result}
 
 
 def main() -> None:
@@ -54,6 +57,7 @@ def main() -> None:
     ap.add_argument("--repeat", type=int, default=1)
     ap.add_argument("--only", default="")
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--thinking", action="store_true")
     args = ap.parse_args()
 
     cases = load_cases()
@@ -63,7 +67,7 @@ def main() -> None:
     client, model = make_client()
     jobs = [c for c in cases for _ in range(args.repeat)]
     with ThreadPoolExecutor(args.workers) as pool:
-        results = list(pool.map(lambda c: run_case(client, model, c), jobs))
+        results = list(pool.map(lambda c: run_case(client, model, c, args.thinking), jobs))
 
     for r in results:
         mark = "PASS" if r["pass"] else "FAIL"
@@ -80,11 +84,18 @@ def main() -> None:
     summary["by_category"] = {c: f"{sum(v)}/{len(v)}" for c, v in by_cat.items()}
     summary["avg_tool_calls"] = round(sum(len(r["tools"]) for r in results) / n, 2)
     summary["avg_seconds"] = round(sum(r["seconds"] for r in results) / n, 1)
+    summary["avg_model_calls"] = round(sum(r["usage"]["calls"] for r in results) / n, 2)
+    summary["avg_prompt_tokens"] = round(sum(r["usage"]["prompt_tokens"] for r in results) / n)
+    summary["avg_completion_tokens"] = round(sum(r["usage"]["completion_tokens"] for r in results) / n)
+    summary["avg_reasoning_tokens"] = round(sum(r["usage"]["reasoning_tokens"] for r in results) / n)
+    summary["avg_cost_usd"] = round(sum(r["usage"]["cost_usd"] for r in results) / n, 6)
+    summary["total_cost_usd"] = round(sum(r["usage"]["cost_usd"] for r in results), 4)
     print("\n" + json.dumps(summary, ensure_ascii=False, indent=1))
 
-    out = HERE / "results" / f"{datetime.now():%Y%m%d-%H%M%S}.json"
+    tag = "thinking" if args.thinking else "nothink"
+    out = HERE / "results" / f"{datetime.now():%Y%m%d-%H%M%S}-{tag}.json"
     out.parent.mkdir(exist_ok=True)
-    out.write_text(json.dumps({"model": model, "repeat": args.repeat, "summary": summary, "results": results},
+    out.write_text(json.dumps({"model": model, "thinking": args.thinking, "repeat": args.repeat, "summary": summary, "results": results},
                               ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"saved {out.relative_to(HERE.parent)}")
 

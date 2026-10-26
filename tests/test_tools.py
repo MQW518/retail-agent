@@ -65,3 +65,13 @@ def test_execute_tool_rejects_bad_input(store):
 def test_execute_tool_drops_extra_arguments(store):
     out = json.loads(execute_tool(store, "check_stock", '{"product_id": "D001", "extra": 1}'))
     assert out["stock"] == 30
+
+
+def test_store_usable_from_another_thread(store):
+    """回归测试：网页界面里工具会在别的线程执行（曾因 SQLite 线程限制全部报错）。"""
+    import threading
+    out = []
+    t = threading.Thread(target=lambda: out.append(execute_tool(store, "search_products", '{"keyword": "water"}')))
+    t.start()
+    t.join()
+    assert "error" not in json.loads(out[0])
